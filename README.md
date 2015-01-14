@@ -1,2 +1,0 @@
-# tangowithdjango
-Chapter 3
