@@ -95,3 +95,5 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'    # defines the base url from where all media files will  be accessible in the dev server
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory and tells django where uploaded files should be stored on disc.
+
+LOGIN_URL = '/rango/login/'
