@@ -7,8 +7,10 @@
 {% block body_block %}
         <h1>{% if user.is_authenticated %}
            <h1>Rango says... hello {{ user.username }}!</h1>
+		   <img src="{% static "rango.jpg" %}"alt="Picture of Rango"
             {% else %}
            <h1>Rango says... hello world!</h1>
+		   <img src="{% static "rango.jpg" %}"alt="Picture of Rango"
             {% endif %}</h1>
 
         {% if categories %}
@@ -31,4 +33,5 @@
         {% else %}
             <strong>There are no pages present.</strong>
         {% endif %}
+		<p> visits: {{ visits }}</p>
 {% endblock %}
