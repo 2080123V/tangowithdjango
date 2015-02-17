@@ -60,8 +60,7 @@ def about(request):
        count = request.session.get('visits')
     else:
        count = 0
-    
-	return render(request, 'rango/about.html',{'visits': count})
+    return render(request, 'rango/about.html',{'visits': count})
     return HttpResponse("This tutorial has been put together by Rajeevan Vijayakumar, 2080123")
 
 def category(request, category_name_slug):
