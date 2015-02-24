@@ -45,6 +45,7 @@ INSTALLED_APPS = (                                            # Lists all the in
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,4 +99,10 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'    # defines the base url from where all media files will  be accessible in the dev server
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory and tells django where uploaded files should be stored on disc.
 
-LOGIN_URL = '/rango/login/'
+
+REGISTRATION_OPEN = True                # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
+LOGIN_REDIRECT_URL = '/rango/'  # The page you want users to arrive at after they successful log in
+LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,
+                                                                # and are trying to access pages requiring authentication
