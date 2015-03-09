@@ -31,7 +31,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['2080123V.pythonanywhere.com']
 
 
 # Application definition
