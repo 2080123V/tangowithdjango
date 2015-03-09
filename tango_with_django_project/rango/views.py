@@ -7,6 +7,7 @@ from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from datetime import datetime
 from rango.bing_search import run_query
 
@@ -190,14 +191,32 @@ def track_url(request):
 def register_profile(request):
 
     if request.method == "POST":
-        profile_form = UserProfileForm(data=request.POST)
+        profile_form = UserProfileForm(request.POST)
 	if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = get_user_model()
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-            profile.save()
-            return redirect('index')
-        else:
-            profile_form = UserProfileForm()
-        return render(request, 'registration/profile_registration.html',{'profile_form': profile_form})
+           if request.user.is_authenticated():	
+               profile = profile_form.save(commit=False)
+	       user = User.objects.get(id=request.user.id)
+               profile.user = user
+	       try:
+                   profile.picture = request.FILES['picture']
+	       except:
+		      pass
+               profile.save()
+               return index(request)
+    else:
+        form = UserProfileForm(request.GET)
+    return render(request, 'rango/profile_registration.html',{'profile_form': form})
+
+
+def profile(request):
+    u = User.objects.get(username=request.user.username)
+    context_dict = {}
+    try:
+	up = UserProfile.objects.get(user=u)
+    except:
+	   up = None
+	
+    context_dict['user'] = u
+    context_dict['userprofile'] = up
+    return render(request, 'rango/profile.html', context_dict)	
+	
