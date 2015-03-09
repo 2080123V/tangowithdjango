@@ -46,7 +46,7 @@ def populate():
         title="Flask",
         url="http://flask.pocoo.org")
 
-    My_cat = add_cat("Rajeevan")
+    My_cat = add_cat("Rajeevan",100,100)
 
     add_page(cat=My_cat,
         title="GitHub",
