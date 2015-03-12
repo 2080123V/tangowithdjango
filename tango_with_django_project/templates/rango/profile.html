@@ -20,6 +20,9 @@
     {% if userprofile.picture %}
             <img src="{{ userprofile.picture.url }}"  />
     {% endif %}
+	{% if myprofile %}
+            <p><a href="{% url 'edit_profile' %}"> Edit Profile </a></p>
+    {% endif %}
         
 
 </div>

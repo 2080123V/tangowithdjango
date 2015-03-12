@@ -16,10 +16,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),          # Reference the url pattern and passes it onto the url
     url(r'^rango/', include('rango.urls')),              # found in the Rango directory
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-    (r'^accounts/', include('registration.backends.simple.urls'))
+    (r'^accounts/', include('registration.backends.simple.urls')),)
 
+handler404 = 'rango.views.bad_url'
+handler500 = 'rango.views.bad_url'
 
-   )
 if settings.DEBUG:                                      #runs if dDEBUG is true in settings.py
     urlpatterns += patterns(
         'django.views.static',

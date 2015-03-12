@@ -219,4 +219,28 @@ def profile(request):
     context_dict['user'] = u
     context_dict['userprofile'] = up
     return render(request, 'rango/profile.html', context_dict)	
+
+def edit_profile(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except:
+        user_profile = None
+    if request.method == 'POST':
+        profile_form = UserProfileForm(data=request.POST, instance=user_profile)
+        if profile_form.is_valid():
+            profile_updated = profile_form.save(commit=False)
+            if users_profile is None:
+                profile_updated.user = User.objects.get(id=request.user.id)
+            if 'picture' in request.FILES:
+                try:
+                    profile_updated.picture = request.FILES['picture']
+                except:
+                    pass
+            profile_updated.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=user_profile)
+        return render(request, 'rango/edit_profile.html', {'profile_form': form})
 	
+def bad_url(request):
+    return render(request, 'rango/pageinvalid.html')

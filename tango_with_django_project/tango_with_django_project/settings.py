@@ -25,7 +25,7 @@ TEMPLATE_DIRS = ['code/tango_with_django_project/',        #Pinpoint the directo
 SECRET_KEY = 'i&9c0qm8yi@&vou0(4o2r8e&k6k&+da8^w#20fv30t8tv6d0*m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
